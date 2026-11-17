@@ -1,9 +1,9 @@
 # floricultura
 
-Projeto Final — **Sistema Floricultura** (Opção 1)
+Projeto Final — **Sistema Floricultura** (opção 1 fornecida na A3)
 Aluno: Gustavo Fraga — Análise e Desenvolvimento de Sistemas
 
-Sistema de compras simples para uma floricultura, feito em Python básico, com menu interativo:
+Sistema de compras simples para uma floricultura, feito em Python, com menu interativo:
 
 - **C** – Comprar (mostra o catálogo e adiciona flores ao carrinho)
 - **R** – Remover (remove uma ocorrência de um item do carrinho)

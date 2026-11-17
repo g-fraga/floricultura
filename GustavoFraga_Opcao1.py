@@ -23,6 +23,7 @@ opcao = ""
 
 # --------------------------------------------------------------
 # LAÇO PRINCIPAL: o menu se repete até o usuário escolher F
+# (ou responder N depois de listar os itens)
 # --------------------------------------------------------------
 while opcao != "F":
     print("-" * 21)
@@ -100,32 +101,52 @@ while opcao != "F":
     # ======================= L - LISTAR ========================
     elif opcao == "L":
         if len(carrinho) == 0:
-            print("Seu carrinho está vazio.")
+            print("\nSeu carrinho está vazio.")
         else:
-            print("Itens no carrinho:")
+            print("\nItens no carrinho:")
             print(carrinho)  # mostra a lista inteira, inclusive os repetidos
+
+        # Pergunta se o cliente quer mais alguma coisa e só aceita S ou N
+        resposta = input("\nDeseja mais alguma coisa? (S/N): ").strip().upper()
+        while resposta != "S" and resposta != "N":
+            print("Resposta inválida! Digite S para Sim ou N para Não.")
+            resposta = input("Deseja mais alguma coisa? (S/N): ").strip().upper()
+
+        # S: o laço continua normalmente e o menu aparece de novo.
+        # N: a opção vira "F", o while termina e a compra é finalizada
+        #    direto, sem mostrar o menu outra vez.
+        if resposta == "N":
+            opcao = "F"
 
     # ======================= F - FINALIZAR =====================
     elif opcao == "F":
-        total = 0
-
-        if len(carrinho) == 0:
-            print("Seu carrinho está vazio.")
-        else:
-            # Percorre o carrinho mostrando cada item e somando o preço
-            for i in range(len(carrinho)):
-                item = carrinho[i]
-                print(f"{i + 1} {item}")
-                # index() descobre em que posição a flor está na lista de flores;
-                # o preço dela está nessa mesma posição na lista de preços
-                posicao = flores.index(item)
-                total = total + precos[posicao]
-
-        print(f"Você deve: R${total}")
-        print("Obrigado pela compra! Volte sempre.")
-        print("Finalizando a compra..")
-        # Como a opção agora é "F", o while termina e o programa se encerra
+        # Não precisa fazer nada aqui (pass = "não faça nada"):
+        # com a opção "F" o while termina e a finalização acontece
+        # logo depois do laço, no fim do programa
+        pass
 
     # ===================== OPÇÃO INVÁLIDA ======================
     else:
         print("Opção inválida! Escolha C, R, L ou F.")
+
+# --------------------------------------------------------------
+# FINALIZAR A COMPRA
+# O programa só chega aqui quando o while termina, ou seja, quando
+# o usuário escolheu F no menu ou respondeu N depois de listar.
+# --------------------------------------------------------------
+total = 0
+
+if len(carrinho) == 0:
+    print("Seu carrinho está vazio.")
+else:
+    # Percorre o carrinho mostrando cada item e somando o preço
+    for i in range(len(carrinho)):
+        item = carrinho[i]
+        print(f"{i + 1} {item}")
+        # index() descobre em que posição a flor está na lista de flores;
+        # o preço dela está nessa mesma posição na lista de preços
+        posicao = flores.index(item)
+        total = total + precos[posicao]
+
+print(f"Você deve: R${total}")
+print("Obrigado pela compra! Volte sempre.")
